@@ -1,0 +1,22 @@
+{
+  "timestamp": "20260812_142615",
+  "motiongpt_ckpt": "./checkpoints/MotionGPT-base/motiongpt_s3_h3d.tar",
+  "vqvae_ckpt": "./checkpoints/2d_vqvae_ver3/MotionGPT_2DEncoder/encoder_only-l1-bs64-lr0.0001/best_vqvae_epoch2960_valacc0.4471.tar",
+  "2d": {
+    "Matching_score": 2.9988532066345215,
+    "gt_Matching_score": 3.020111083984375,
+    "R_precision_top_1": 0.5215517282485962,
+    "R_precision_top_2": 0.709482729434967,
+    "R_precision_top_3": 0.793749988079071,
+    "gt_R_precision_top_1": 0.5006465315818787,
+    "gt_R_precision_top_2": 0.6894396543502808,
+    "gt_R_precision_top_3": 0.7924569249153137,
+    "Bleu_1": 0.43591201305389404,
+    "Bleu_2": 0.0,
+    "Bleu_3": 0.0,
+    "ROUGE_L": 0.348285436630249,
+    "CIDEr": 0.08019399642944336,
+    "Bleu_4": 0.06290636956691742,
+    "Bert_F1": 0.31856659054756165
+  }
+}

@@ -6,3 +6,8 @@ __pycache__/
 2DMotionGPT/checkpoints
 
 2DTM2T/dataset
+
+2DMG-MotionLLM/dataset
+2DMG-MotionLLM/checkpoints
+2DMG-MotionLLM/glove
+2DMG-MotionLLM/m2t-ft-from-GSPretrained-base
