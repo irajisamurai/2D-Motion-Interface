@@ -4,3 +4,5 @@ __pycache__/
 2DMotionGPT/deps
 2DMotionGPT/dataset
 2DMotionGPT/checkpoints
+
+2DTM2T/dataset

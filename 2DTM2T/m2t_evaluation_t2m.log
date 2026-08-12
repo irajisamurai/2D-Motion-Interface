@@ -1,0 +1,19 @@
+Time: 2026-07-04 11:43:50.624097
+---> [M2T_MotionGPT_EL4_DL4_NH8_PS] BLEU: (1): 0.6162 (2): 0.4551 (3): 0.3253 (4): 0.2322 
+---> [M2T_MotionGPT_EL4_DL4_NH8_PS] ROUGE_L: 0.4914
+---> [M2T_MotionGPT_EL4_DL4_NH8_PS] CIDER: 0.6861
+Time: 2026-07-04 11:44:08.788126
+---> [M2T_MotionGPT_EL4_DL4_NH8_PS] BERT SCORE: 0.3679
+==================== Replication 0 ====================
+Time: 2026-07-04 11:44:25.637693
+---> [M2T_MotionGPT_EL4_DL4_NH8_PS] Matching Score: 3.1510
+---> [M2T_MotionGPT_EL4_DL4_NH8_PS] R_precision: (top 1): 0.4825 (top 2): 0.6828 (top 3): 0.7841 
+---> [ground truth] Matching Score: 2.9831
+---> [ground truth] R_precision: (top 1): 0.5103 (top 2): 0.6985 (top 3): 0.7940 
+!!! DONE !!!
+========== Matching Score Summary ==========
+---> [M2T_MotionGPT_EL4_DL4_NH8_PS] Mean: 3.1510 CInterval: 0.0000
+---> [ground truth] Mean: 2.9831 CInterval: 0.0000
+========== R_precision Summary ==========
+---> [M2T_MotionGPT_EL4_DL4_NH8_PS](top 1) Mean: 0.4825 CInt: 0.0000;(top 2) Mean: 0.6828 CInt: 0.0000;(top 3) Mean: 0.7841 CInt: 0.0000;
+---> [ground truth](top 1) Mean: 0.5103 CInt: 0.0000;(top 2) Mean: 0.6985 CInt: 0.0000;(top 3) Mean: 0.7940 CInt: 0.0000;
