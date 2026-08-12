@@ -70,7 +70,9 @@ The **real-world video dataset** constructed in this work (paired 2D/3D estimate
 
 For base model checkpoints and other dependencies (GloVe embeddings, evaluators, etc.), please follow the setup instructions in each original repository.
 
-The checkpoints trained in this work cannot be shared at this time due to the anonymity requirements of the review process. They will be made publicly available upon acceptance.
+Download the checkpoints from here!
+
+https://drive.google.com/drive/folders/17wtEU7ABA3yIj6JixG905bK7u47fMk9w?usp=drive_link
 
 ## Reproducing Key Results
 
@@ -79,11 +81,15 @@ The checkpoints trained in this work cannot be shared at this time due to the an
 **2DMotionGPT** — evaluate 2D encoder and 3D baseline side by side:
 ```bash
 cd 2DMotionGPT
+conda activate mgpt_2d
 # 3D baseline
-python evaluate_motionGPT.py --cfg configs/config_h3d_stage1.yaml --nodebug --eval_3d
+python evaluate_motionGPT.py --gpu_id 7 --eval_3d \
+    --output results/eval_3d_bs1.json
+
 # 2D encoder
-python evaluate_motionGPT.py --cfg configs/config_h3d_stage1.yaml --nodebug \
-    --vqvae_ckpt <path/to/2d_encoder.tar>
+python evaluate_motionGPT.py --gpu_id 7 \
+    --vqvae_ckpt ./checkpoints/2d_vqvae_ver3/MotionGPT_2DEncoder/encoder_only-l1-bs64-lr0.0001/best_vqvae_epoch2960_valacc0.4471.tar \
+    --output results/eval_2d_bs1.json
 ```
 
 <details><summary>Paper Results (HumanML3D test set)</summary>

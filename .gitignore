@@ -1,0 +1,6 @@
+__pycache__/
+*.py[cod]
+
+2DMotionGPT/deps
+2DMotionGPT/dataset
+2DMotionGPT/checkpoints
