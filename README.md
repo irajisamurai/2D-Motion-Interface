@@ -48,7 +48,6 @@ HumanML3D/
 ├── train.txt
 ├── val.txt
 ├── test.txt
-├── train_val.txt
 └── all.txt
 ```
 
@@ -64,13 +63,44 @@ dataset/HumanML3D/
 └── ...
 ```
 
-The **real-world video dataset** constructed in this work (paired 2D/3D estimated motions and captions) cannot be shared at this time due to the anonymity requirements of the review process. The dataset will be made publicly available upon acceptance.
+The **real-world video dataset** constructed in this work (paired 2D/3D estimated motions and captions) can be donwloaded from here. 
+
+https://drive.google.com/drive/u/2/folders/1joJyXx_AsaNBFv-jxLN8gSfXePDDX4zY
+
+Expected structure:
+
+```
+dataset
+├── HumanML3D
+└──real_world_dataset_ver2
+```
 
 ## Pre-trained Checkpoints
 
 For base model checkpoints and other dependencies (GloVe embeddings, evaluators, etc.), please follow the setup instructions in each original repository.
+```bash
+#MotionGPT
+cd 2DMotionGPT
+bash prepare/prepare_t5.sh
+bash prepare/download_t2m_evaluators.sh
+bash prepare/download_pretrained_models.sh
 
-Download the checkpoints from here!
+#MG-MotionLLM
+cd 2DMG-MotionLLM
+bash prepare/prepare_t5.sh
+bash prepare/download_glove.sh
+bash prepare/download_vqvae.sh
+```
+For MG-MotionLLM, Download baseline checkpoints from here and place them in `2DMG-MotionLLM/`
+
+
+https://huggingface.co/wbz0505/m2t-ft-from-GSPretrained-base
+
+
+https://huggingface.co/wbz0505/m2dt-ft-from-GSPretrained-base
+
+
+Download the our method's checkpoints from here!
 
 https://drive.google.com/drive/folders/17wtEU7ABA3yIj6JixG905bK7u47fMk9w?usp=drive_link
 
@@ -147,10 +177,10 @@ python eval_m2dt.py --model_name ./m2dt-ft-from-GSPretrained-base
 # 2D scratch (full VQ-VAE trained from scratch on 2D data)
 # M2T
 python eval_m2t.py --model_name ./m2t-2drecon-100k/checkpoint-100000 \
-    --vqvae_2drecon_ckpt <path/to/2d_scratch_encoder.tar>
+    --vqvae_2drecon_ckpt ../2DMotionGPT/checkpoints/2d_vqvae_full/MotionGPT_2DEncoder/full_recon_2d-l1_smooth-bs64-lr0.0001/best_vqvae_epoch2990_valloss0.0354.tar
 # M2DT
 python eval_m2dt.py --model_name ./m2dt-2drecon/checkpoint-300000 \
-    --vqvae_2drecon_ckpt <path/to/2d_scratch_encoder.tar>
+    --vqvae_2drecon_ckpt ../2DMotionGPT/checkpoints/2d_vqvae_full/MotionGPT_2DEncoder/full_recon_2d-l1_smooth-bs64-lr0.0001/best_vqvae_epoch2990_valloss0.0354.tar
 ```
 
 <details><summary>Paper Results (HumanML3D test set)</summary>
@@ -185,17 +215,19 @@ cd 2DMotionGPT
 # ViTPose 2D + 2D Adapter (main result)
 python evaluate_with_realworld.py \
     --cfg configs/config_h3d_stage1.yaml --nodebug \
-    --estimated_motion_dir <path/to/real_world_dataset> \
-    --vqvae_ckpt <path/to/2d_encoder.tar> \
-    --adapter_ckpt <path/to/2d_adapter.tar> \
+    --estimated_motion_dir ./dataset/real_world_dataset_ver2/pred \
+    --vqvae_ckpt ./checkpoints/2d_vqvae_ver3/MotionGPT_2DEncoder/encoder_only-l1-bs64-lr0.0001/best_vqvae_epoch2960_valacc0.4471.tar \
+    --adapter_ckpt ./checkpoints/adapter/MotionGPT_2DEncoder/adapter-residual-bs64-lr1e-3/best_adapter_epoch690_valloss1.2251.tar \
     --adapter_type residual \
     --mode both
+
 # WHAM 3D + 3D Adapter
 python evaluate_with_realworld_3d_adapter.py \
     --cfg configs/config_h3d_stage1.yaml --nodebug \
-    --estimated_motion_dir <path/to/real_world_dataset> \
-    --adapter_ckpt <path/to/3d_adapter.tar> \
-    --split test --mode both
+    --estimated_motion_dir ./dataset/gt_upper_bound_wham \
+    --adapter_ckpt ./checkpoints/adapter3d/MotionGPT_2DEncoder/adapter3d-residual-bs64-lr1e-3/best_adapter3d_epoch880_valloss1.2810.tar \
+    --split test \
+    --mode both
 ```
 
 <details><summary>Paper Results (132 real-world samples)</summary>

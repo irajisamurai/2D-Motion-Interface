@@ -427,9 +427,9 @@ def parse_script_args():
     p.add_argument("--max_samples", type=int, default=None,
                    help="Limit the number of evaluation samples (for quick testing).")
     p.add_argument("--adapter_type", type=str, default="residual",
-                   choices=["linear", "residual", "conv1d"],
-    p.add_argument("--adapter_hidden", type=int, default=512,
-    p.add_argument("--adapter_kernel_size", type=int, default=3,
+                   choices=["linear", "residual", "conv1d"],)
+    p.add_argument("--adapter_hidden", type=int, default=512,)
+    p.add_argument("--adapter_kernel_size", type=int, default=3,)
     script_args, _ = p.parse_known_args()
     return script_args
 
