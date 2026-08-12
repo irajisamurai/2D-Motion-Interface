@@ -346,9 +346,9 @@ def parse_args():
     p.add_argument("--mode", type=str, default="both",
                    choices=["adapter", "no_adapter", "both"])
     p.add_argument("--adapter_type", type=str, default="residual",
-                   choices=["linear", "residual", "conv1d"],
-    p.add_argument("--adapter_hidden", type=int, default=512,
-    p.add_argument("--adapter_kernel_size", type=int, default=3,
+                   choices=["linear", "residual", "conv1d"],)
+    p.add_argument("--adapter_hidden", type=int, default=512,)
+    p.add_argument("--adapter_kernel_size", type=int, default=3,)
     p.add_argument("--gpu_id", type=int, default=0)
     p.add_argument("--prompt", type=str, default="Generate text: ")
     p.add_argument("--max_new_tokens", type=int, default=40)

@@ -134,7 +134,7 @@ python evaluate_motionGPT.py --gpu_id 7 \
 
 ---
 
-**2DTM2T** — first tokenize, then evaluate:
+<!--**2DTM2T** — first tokenize, then evaluate:
 ```bash
 cd 2DTM2T
 # 3D baseline
@@ -164,6 +164,7 @@ python final_evaluations_m2t.py --tokenizer_name MotionGPT-base-2D \
 </details>
 
 ---
+-->
 
 **2DMG-MotionLLM** — evaluate 3D baseline and 2D encoder sequentially:
 ```bash
@@ -244,6 +245,7 @@ python evaluate_with_realworld_3d_adapter.py \
 
 ---
 
+<!--
 **2DTM2T:**
 ```bash
 cd 2DTM2T
@@ -276,23 +278,30 @@ python evaluate_with_realworld_3d_adapter_tm2t.py \
 </details>
 
 ---
-
+ -->
 **2DMG-MotionLLM:**
 ```bash
 cd 2DMG-MotionLLM
 # ViTPose 2D + 2D Adapter (main result)
 python evaluate_with_realworld.py \
-    --estimated_motion_dir <path/to/real_world_dataset> \
-    --adapter_ckpt <path/to/2d_adapter.pt> \
+    --estimated_motion_dir ../2DMotionGPT/dataset/real_world_dataset_ver2/pred \
+    --adapter_ckpt ./checkpoints/adapter/MG-MotionLLM/best_adapter_epoch2520_valloss1.1380.pt \
     --adapter_type residual \
-    --meta_dir <path/to/meta_dir> \
-    --data_root <path/to/HumanML3D> \
-    --split test --mode both --gpu_id 0
+    --meta_dir ../2DMotionGPT/deps/t2m/t2m/VQVAEV3_CB1024_CMT_H1024_NRES3/meta \
+    --data_root ./dataset/HumanML3D \
+    --split test \
+    --mode both \
+    --gpu_id 0
+
 # WHAM 3D + 3D Adapter
 python evaluate_with_realworld_3d_adapter.py \
-    --estimated_motion_dir <path/to/real_world_dataset> \
-    --adapter_ckpt <path/to/3d_adapter.pt> \
-    --split test --gpu_id 0 --mode both
+    --estimated_motion_dir ../2DMotionGPT/dataset/gt_upper_bound_wham \
+    --adapter_ckpt ./checkpoints/adapter3d/MG-MotionLLM/best_adapter3d_epoch610_valloss1.1204.pt \
+    --meta_dir ../2DMotionGPT/deps/t2m/t2m/VQVAEV3_CB1024_CMT_H1024_NRES3/meta \
+    --data_root ./dataset/HumanML3D \
+    --split test \
+    --gpu_id 0 \
+    --mode both
 ```
 
 <details><summary>Paper Results (129 real-world samples)</summary>
