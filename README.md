@@ -9,6 +9,7 @@
 <!-- TODO: swap the two "coming soon" badges for the real arXiv / project-page links -->
 [![arXiv](https://img.shields.io/badge/arXiv-coming_soon-b31b1b?style=for-the-badge&logo=arxiv&logoColor=white)](#)
 [![Project Page](https://img.shields.io/badge/Project_Page-coming_soon-4c8bf5?style=for-the-badge&logo=googlechrome&logoColor=white)](#)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Hugging_Face_Space-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black&labelColor=1a1a1a)](https://huggingface.co/spaces/KanameYOkoYAMA/2d-motion-interface)
 [![Dataset](https://img.shields.io/badge/Dataset-Real--World_Videos-34A853?style=for-the-badge&logo=googledrive&logoColor=white)](https://drive.google.com/drive/folders/1joJyXx_AsaNBFv-jxLN8gSfXePDDX4zY)
 [![Checkpoints](https://img.shields.io/badge/Checkpoints-Download-4285F4?style=for-the-badge&logo=googledrive&logoColor=white)](https://drive.google.com/drive/folders/17wtEU7ABA3yIj6JixG905bK7u47fMk9w?usp=drive_link)
 

@@ -1,0 +1,54 @@
+clips:
+- id: M004947
+  label: Sitting down cross-legged, then standing back up
+  video: video/M004947.mp4
+  keypoints: json/M004947.json
+  frames_raw: 180
+  frames_used: 180
+  gt:
+  - a person sits down then uses right arm to push up.
+  - a person sat down on the floor, with crossing legs, and after stand up
+  - a person sits down on the ground in lotus position then gets back up.
+  expected:
+    adapter: a person sits down on the ground briefly cross legged and then begins
+      to stand up.
+    no_adapter: a man sits down cross legged then stands up again.
+- id: '000099'
+  label: Jogging in place
+  video: video/000099.mp4
+  keypoints: json/000099.json
+  frames_raw: 75
+  frames_used: 72
+  gt:
+  - a person jogs in place
+  - a person is jogging on the spot.
+  - person jogs on the spot
+  expected:
+    adapter: a person jogs in place.
+    no_adapter: a person doing the running man dance.
+- id: '005486'
+  label: Jumping and throwing with both hands
+  video: video/005486.mp4
+  keypoints: json/005486.json
+  frames_raw: 36
+  frames_used: 36
+  gt:
+  - the man throws  both hands
+  - a person hops and throws an object with both hands.
+  - the person through something up with both hands.
+  expected:
+    adapter: a man jumps and throws an object.
+    no_adapter: a person jumps up and down and swings their arms back.
+- id: M001523
+  label: Reaching for the back of the head
+  video: video/M001523.mp4
+  keypoints: json/M001523.json
+  frames_raw: 91
+  frames_used: 88
+  gt:
+  - a person feeling the back of their head.
+  - a person scratching his head.
+  - moves hand up and lets it stay up
+  expected:
+    adapter: a person scratches their head with their left hand.
+    no_adapter: the person is waving hello with his left hand.

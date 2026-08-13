@@ -1,0 +1,14 @@
+# Captions were verified against these versions (space/verify_parity.py).
+# Bumping transformers can change greedy decoding, so re-run the parity check
+# after any change here.
+#
+# torch: ZeroGPU only accepts 2.11.0 / 2.10.0 / 2.9.1 / 2.8.0, so this is 2.9.1
+# rather than the 2.9.0 used locally. The app runs on CPU either way.
+torch==2.9.1
+transformers==4.57.1
+safetensors==0.6.2
+numpy==2.2.6
+omegaconf==2.3.0
+huggingface_hub>=0.24.0
+spaces
+# gradio itself is installed from `sdk_version` in README.md, not from here
