@@ -174,13 +174,16 @@ Motion clips were randomly sampled from the **HumanML3D test set** and shown to 
 | Captions | original HumanML3D captions of the sampled clips |
 | Human verification | 3 annotators; **86.4%** of video–caption pairs judged semantically consistent |
 
-> 📥 **[Download the real-world dataset (Google Drive)](https://drive.google.com/drive/folders/1joJyXx_AsaNBFv-jxLN8gSfXePDDX4zY)**
+> 📥 **[Download the real-world dataset (Google Drive)](https://drive.google.com/drive/folders/1MqjND63JzTSYQw-q_PhFFoAoHpYGo-yw?usp=drive_link)**
 
 Expected structure:
 
 ```
 dataset/
 ├── HumanML3D/
+├── gt_upper_bound_wham/
+├── humanml3d_for_render/
+├── humanml3d_for_render_wham/
 └── real_world_dataset_ver2/
 ```
 
@@ -489,20 +492,24 @@ python 2d_vq_train.py --dataname t2m
 cd 2DMotionGPT
 python -m train_adapter \
     --cfg configs/config_h3d_stage1.yaml --nodebug \
-    --vqvae_ckpt <path/to/2d_encoder.tar> \
-    --estimated_motion_dir <path/to/humanml3d_vitpose_json_root>
+    --vqvae_ckpt ./checkpoints/2d_vqvae_ver3/MotionGPT_2DEncoder/encoder_only-l1-bs64-lr0.0001/best_vqvae_epoch2960_valacc0.4471.tar \
+    --estimated_motion_dir ./dataset/humanml3d_for_render
 ```
 
 **2DMG-MotionLLM**:
 ```bash
+
 cd 2DMG-MotionLLM
-python train_adapter.py \
-    --vqvae_2d_ckpt <path/to/2d_encoder.pt> \
-    --estimated_motion_dir <path/to/humanml3d_vitpose_json_root> \
-    --meta_dir <path/to/meta_dir> \
-    --data_root <path/to/HumanML3D> \
+python -u train_adapter.py \
+    --vqvae_2d_ckpt ./checkpoints/2d_vq_train/t2m/best_2dvq_epoch1881_ratio0.5557.pt \
+    --estimated_motion_dir ../2DMotionGPT/dataset/humanml3d_for_render \
+    --meta_dir ../2DMotionGPT/deps/t2m/t2m/VQVAEV3_CB1024_CMT_H1024_NRES3/meta \
+    --data_root ./dataset/HumanML3D \
+    --ckpt_save_dir ./checkpoints/adapter/MG-MotionLLM \
+    --max_epochs 3000 --batch_size 64 --val_every 10 \
     --adapter_type residual \
-    --max_epochs 3000 --batch_size 64
+    --wandb_project MG-MotionLLM-Adapter \
+    --gpu_id 7
 ```
 
 ### Step 3: Train 3D Adapter (WHAM → latent space)
@@ -512,15 +519,16 @@ python train_adapter.py \
 cd 2DMotionGPT
 python train_adapter_3d.py \
     --cfg configs/config_h3d_stage1.yaml --nodebug \
-    --estimated_motion_dir <path/to/humanml3d_wham_root>
+    --estimated_motion_dir ./datasets/humanml3d_for_render_wham
 ```
 
 **2DMG-MotionLLM**:
 ```bash
 cd 2DMG-MotionLLM
 python train_adapter_3d.py \
-    --estimated_motion_dir <path/to/humanml3d_wham_root> \
-    --val_every 10
+    --estimated_motion_dir ../2DMotionGPT/dataset/humanml3d_for_render_wham \
+    --val_every 10 \
+    --val_text_every 100
 ```
 
 ## 🚧 Limitations
