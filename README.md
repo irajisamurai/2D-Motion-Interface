@@ -6,8 +6,13 @@
 **Kaname Yokoyama**<sup>1</sup> · **Norimichi Ukita**<sup>1</sup><br>
 <sup>1</sup> Toyota Technological Institute
 
-<!-- TODO: swap the two "coming soon" badges for the real arXiv / project-page links -->
-[![arXiv](https://img.shields.io/badge/arXiv-coming_soon-b31b1b?style=for-the-badge&logo=arxiv&logoColor=white)](#)
+### 🏆 Accepted to **HCMIW @ ECCV 2026** — **Oral Presentation**
+
+[![Venue](https://img.shields.io/badge/ECCV_2026-HCMIW-8e44ad?style=for-the-badge&logoColor=white)](#)
+[![Oral](https://img.shields.io/badge/Oral-Presentation-e67e22?style=for-the-badge&logoColor=white)](#)
+
+<!-- TODO: swap the "coming soon" project-page badge for the real link -->
+[![arXiv](https://img.shields.io/badge/arXiv-2608.15984-b31b1b?style=for-the-badge&logo=arxiv&logoColor=white)](https://arxiv.org/abs/2608.15984)
 [![Project Page](https://img.shields.io/badge/Project_Page-coming_soon-4c8bf5?style=for-the-badge&logo=googlechrome&logoColor=white)](#)
 [![Live Demo](https://img.shields.io/badge/Live_Demo-Hugging_Face_Space-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black&labelColor=1a1a1a)](https://huggingface.co/spaces/KanameYOkoYAMA/2d-motion-interface)
 [![Dataset](https://img.shields.io/badge/Dataset-Real--World_Videos-34A853?style=for-the-badge&logo=googledrive&logoColor=white)](https://drive.google.com/drive/folders/1joJyXx_AsaNBFv-jxLN8gSfXePDDX4zY)
@@ -542,12 +547,14 @@ python train_adapter_3d.py \
 
 If you find this work useful, please consider citing:
 
-<!-- TODO: update booktitle/pages once the venue is confirmed -->
+<!-- TODO: add pages/publisher once the proceedings are out -->
 ```bibtex
 @inproceedings{yokoyama2026plugandplay,
   title     = {A Plug-and-Play 2D Motion Interface for Real-World Motion Language Models},
   author    = {Yokoyama, Kaname and Ukita, Norimichi},
-  booktitle = {TODO},
+  booktitle = {Proceedings of the European Conference on Computer Vision (ECCV) Workshops,
+               Human-Centric Motion Intelligence Workshop (HCMIW)},
+  note      = {Oral Presentation},
   year      = {2026}
 }
 ```
