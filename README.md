@@ -8,8 +8,8 @@
 
 ### 🏆 Accepted to **HCMIW @ ECCV 2026** — **Oral Presentation**
 
-[![Venue](https://img.shields.io/badge/ECCV_2026-HCMIW-8e44ad?style=for-the-badge&logoColor=white)](#)
-[![Oral](https://img.shields.io/badge/Oral-Presentation-e67e22?style=for-the-badge&logoColor=white)](#)
+[![Venue](https://img.shields.io/badge/ECCV_2026-HCMIW-8e44ad?style=for-the-badge&logoColor=white)](https://hcmiw.github.io/hcmiw-eccv2026/)
+[![Oral](https://img.shields.io/badge/Oral-Presentation-e67e22?style=for-the-badge&logoColor=white)](https://hcmiw.github.io/hcmiw-eccv2026/)
 
 <!-- TODO: swap the "coming soon" project-page badge for the real link -->
 [![arXiv](https://img.shields.io/badge/arXiv-2608.15984-b31b1b?style=for-the-badge&logo=arxiv&logoColor=white)](https://arxiv.org/abs/2608.15984)

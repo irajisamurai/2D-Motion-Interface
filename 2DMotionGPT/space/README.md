@@ -8,6 +8,12 @@ sdk_version: 5.50.0
 app_file: app.py
 pinned: false
 license: mit
+tags:
+  - arxiv:2608.15984
+  - motion-captioning
+  - motion-language
+  - human-motion
+  - 2d-pose
 ---
 
 > **Hardware note.** This Space is set to `zero-a10g`, not `cpu-basic`: a free personal
@@ -16,6 +22,8 @@ license: mit
 > the reason `requirements.txt` pins `torch==2.9.1`.
 
 # A Plug-and-Play 2D Motion Interface
+
+[Paper (arXiv:2608.15984)](https://arxiv.org/abs/2608.15984) · [Code](https://github.com/irajisamurai/2D-Motion-Interface) · [HCMIW @ ECCV 2026](https://hcmiw.github.io/hcmiw-eccv2026/) (Oral Presentation)
 
 Motion captioning of real monocular video through **2D keypoints only** — no 3D pose
 estimation anywhere in the pipeline.

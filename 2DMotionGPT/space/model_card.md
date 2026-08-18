@@ -1,6 +1,7 @@
 ---
 library_name: pytorch
 tags:
+  - arxiv:2608.15984
   - motion-captioning
   - motion-language
   - human-motion
@@ -10,6 +11,8 @@ license: mit
 ---
 
 # 2D Motion Interface — inference bundle (MotionGPT)
+
+[Paper (arXiv:2608.15984)](https://arxiv.org/abs/2608.15984) · [Code](https://github.com/irajisamurai/2D-Motion-Interface) · [HCMIW @ ECCV 2026](https://hcmiw.github.io/hcmiw-eccv2026/) (Oral Presentation)
 
 Inference-only weights for **A Plug-and-Play 2D Motion Interface for Real-World Motion
 Language Models**, in the MotionGPT configuration. This repo backs the demo Space; it is
