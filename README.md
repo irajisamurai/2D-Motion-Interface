@@ -44,7 +44,7 @@
 - 🥊 **Better than training MoLMs from scratch on 2D.** 2D Scratch drops **−25.8%** (TM2T) and **−12.8%** (MG-MotionLLM) versus 3D Input — our interface substantially reduces that gap at a fraction of the compute.
 - 🔬 **2D and 3D motions align in both latent and token space.** Discrete token agreement with 3D-derived tokens reaches **44.8% / 59.6% / 67.1%** (Top-1/2/3), against a **0.20%** random baseline for a codebook of size 512.
 - 🎥 **On real monocular video, 2D beats estimated 3D.** *2D Input w/ `A_real`* outperforms all 3D Input settings on almost all metrics across all three MoLMs — while being far cheaper: ViTPose (Base) needs **17.2 GFLOPs/frame** versus **250.2** for WHAM.
-- 🗂 **New monocular real-world video motion dataset.** 132 videos from 10 participants (14,878 frames / 743.9 s), paired with estimated 2D (ViTPose) and 3D (TRACE, WHAM) motions and HumanML3D captions; 86.4% of video–caption pairs were human-verified as semantically consistent. [Publicly released](https://drive.google.com/drive/folders/1joJyXx_AsaNBFv-jxLN8gSfXePDDX4zY).
+- 🗂 **New monocular real-world video motion dataset.** 132 videos from 10 participants (14,878 frames / 743.9 s), paired with estimated 2D (ViTPose) and 3D (TRACE, WHAM) motions and HumanML3D captions; 86.4% of video–caption pairs were human-verified as semantically consistent. [Publicly released](https://drive.google.com/drive/folders/1MqjND63JzTSYQw-q_PhFFoAoHpYGo-yw?usp=drive_link).
 
 
 <details>
@@ -138,6 +138,29 @@ conda activate <env-name>             # mgpt_2d | tm2t | mg-motionllm
 ```
 
 ## 📂 Dataset Preparation
+
+All data lives under `2DMotionGPT/dataset/`:
+
+```
+2DMotionGPT/dataset/
+├── HumanML3D/                     # HumanML3D
+│   ├── new_joint_vecs/  texts/  Mean.npy  Std.npy
+│   ├── train.txt  val.txt  test.txt  all.txt
+│   └── finemotion_texts/          # FineMotion — 2DMG-MotionLLM only
+├── real_world_dataset_ver2/       # our real-world video dataset (2D / ViTPose)
+├── gt_upper_bound_wham/           # WHAM 3D motions of the same real videos
+├── humanml3d_for_render/          # pseudo-real ViTPose 2D pairs — A_real training
+└── humanml3d_for_render_wham/     # WHAM 3D pairs — A_3D training
+```
+
+`2DTM2T/` and `2DMG-MotionLLM/` need no copy of their own — symlink them to the same data:
+
+```bash
+# from the repository root
+mkdir -p 2DTM2T/dataset 2DMG-MotionLLM/dataset
+ln -s ../../2DMotionGPT/dataset/HumanML3D 2DTM2T/dataset/HumanML3D
+ln -s ../../2DMotionGPT/dataset/HumanML3D 2DMG-MotionLLM/dataset/HumanML3D
+```
 
 ### HumanML3D (all three sub-projects)
 
@@ -525,7 +548,7 @@ python -u train_adapter.py \
 cd 2DMotionGPT
 python train_adapter_3d.py \
     --cfg configs/config_h3d_stage1.yaml --nodebug \
-    --estimated_motion_dir ./datasets/humanml3d_for_render_wham
+    --estimated_motion_dir ./dataset/humanml3d_for_render_wham
 ```
 
 **2DMG-MotionLLM**:
