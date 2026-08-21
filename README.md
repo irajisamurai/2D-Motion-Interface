@@ -58,6 +58,7 @@
 - [📂 Dataset Preparation](#-dataset-preparation)
 - [🧠 Pre-trained Checkpoints](#-pre-trained-checkpoints)
 - [⚡ Quick Start](#-quick-start)
+- [🎥 Caption your own video](#-caption-your-own-video)
 - [📈 Reproducing Key Results](#-reproducing-key-results)
 - [🎯 Training](#-training)
 - [🚧 Limitations](#-limitations)
@@ -135,6 +136,17 @@ Each sub-project uses its **own conda environment** — the PyTorch versions are
 cd <sub-project>                      # 2DMotionGPT | 2DTM2T | 2DMG-MotionLLM
 conda env create -f environment.yml
 conda activate <env-name>             # mgpt_2d | tm2t | mg-motionllm
+```
+
+One more environment is needed **only** to run ViTPose on your own videos ([Caption your own video](#-caption-your-own-video)) — the released datasets already ship their 2D keypoints, so reproducing the paper does not need it:
+
+| Purpose | Env name | Python | PyTorch | CUDA | Key packages |
+|:--|:--|:--:|:--:|:--:|:--|
+| ViTPose 2D pose estimation | `openmmlab` | 3.8 | 1.9.1 | 11.1 | mmpose 1.1.0 · mmdet 3.1.0 · mmcv 2.0.1 |
+
+```bash
+cd 2DMotionGPT
+conda env create -f environment_openmmlab.yml
 ```
 
 ## 📂 Dataset Preparation
@@ -262,6 +274,30 @@ python evaluate_with_realworld.py \
 ```
 
 `--mode both` evaluates with and without the adapter in one pass, so you get the comparison directly.
+
+### 🎥 Caption your own video
+
+`demo/` runs the whole thing on an arbitrary monocular video — ViTPose 2D pose estimation, then captioning through `A_real` → `E_2D` → MotionGPT:
+
+```bash
+cd 2DMotionGPT
+python demo/demo.py --video /path/to/your_video.mp4 --gpu_id 0
+```
+
+The driver only needs the standard library — it runs pose estimation in the `openmmlab` environment and captioning in `mgpt_2d`, since mmpose (torch 1.9) and MotionGPT (torch 2.9) cannot share one environment. Interpreters are found automatically; override with `POSE_PYTHON` / `CAPTION_PYTHON` if needed. Outputs land in `demo/outputs/<video name>/`: `keypoints.json`, `overlay.mp4` (skeleton overlay), `caption.json`, `pose_meta.json`.
+
+Only the weight bundle in [`space/bundle/`](2DMotionGPT/space/) is required — no HumanML3D, no evaluators. The video is resampled to 20 fps automatically; use `--start` / `--duration` to pick a segment, since the model captions at most **196 frames (9.8 s)**. Best results come from a single person, full body in frame, roughly static camera.
+
+<details><summary>Running the two stages separately</summary>
+
+```bash
+# stage 1 — openmmlab env
+python demo/run_vitpose_single.py --video in.mp4 --out_json kp.json --out_video overlay.mp4
+# stage 2 — mgpt_2d env
+python demo/caption_from_json.py --json kp.json --mode both
+```
+
+</details>
 
 ## 📈 Reproducing Key Results
 
